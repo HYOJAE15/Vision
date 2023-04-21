@@ -4,6 +4,7 @@ import argparse
 import numpy as np
 import random
 from matplotlib import pyplot as plt
+import os
 
 
 parser = argparse.ArgumentParser(description='Code for Histogram Equalization tutorial.')
@@ -17,6 +18,11 @@ if src is None:
     exit(0)
 ## [Load image]
 
+## [Set file&directory name]
+path = args.image
+fname = os.path.basename(path)
+dname = os.path.dirname(path)
+## [Set file&directory name]
 
 """
 Histogram Equalization Gray
@@ -75,15 +81,15 @@ hist3 = cv2.calcHist([dst_hsv_v],[0],None,[256],[0,256])
 hist4 = cv2.calcHist([dst_ycc_y],[0],None,[256],[0,256])
 
 # plot(show) Image
-plt.subplot(241),plt.imshow(src_gr, cmap="gray"),plt.title('src_gr')
-plt.subplot(242),plt.imshow(dst_gr, cmap="gray"),plt.title('dst_gr')
-plt.subplot(243),plt.imshow(dst_hsv_v, cmap="gray"),plt.title('dst_hsv_v')
-plt.subplot(244),plt.imshow(dst_ycc_y, cmap="gray"),plt.title('dst_ycc_y')
-
-plt.subplot(245),plt.plot(hist1)
-plt.subplot(246),plt.plot(hist2)
-plt.subplot(247),plt.plot(hist3)
-plt.subplot(248),plt.plot(hist4)
+plt.subplot(241),plt.imshow(src_gr, cmap="gray"),plt.title('gr_img')
+plt.subplot(242),plt.imshow(dst_gr, cmap="gray"),plt.title('gr_equalized_img')
+plt.subplot(243),plt.imshow(dst_hsv_v, cmap="gray"),plt.title('hsv_v_equalized_img')
+plt.subplot(244),plt.imshow(dst_ycc_y, cmap="gray"),plt.title('ycc_y_equalized_img')
+# plot(show) histogram graph
+plt.subplot(245),plt.plot(hist1),plt.title('gr_hist')
+plt.subplot(246),plt.plot(hist2),plt.title('gr_equalized_hist')
+plt.subplot(247),plt.plot(hist3),plt.title('hsv_v_equalized_hist')
+plt.subplot(248),plt.plot(hist4),plt.title('ycc_y_equalized_hist')
 plt.xlim([0,256])
 plt.show()
 
@@ -96,6 +102,16 @@ src_r = cv2.resize(src, dsize=(0, 0), fx=fx_f, fy=fy_f, interpolation=cv2.INTER_
 dst_gr_bgr_r = cv2.resize(dst_gr_bgr, dsize=(0, 0), fx=fx_f, fy=fy_f, interpolation=cv2.INTER_AREA)
 dst_hsv_merged_bgr_r = cv2.resize(dst_hsv_merged_bgr, dsize=(0, 0), fx=fx_f, fy=fy_f, interpolation=cv2.INTER_AREA)
 dst_ycc_merged_bgr_r = cv2.resize(dst_ycc_merged_bgr, dsize=(0, 0), fx=fx_f, fy=fy_f, interpolation=cv2.INTER_AREA)
+
+## [Save results]
+dst_dir = os.path.join(dname, "dst")
+# dst_gr_bgr
+cv2.imwrite(os.path.join(dst_dir, f"dst_gr_3ch_{fname}"), dst_gr_bgr)
+# dst_hsv_merged_bgr
+cv2.imwrite(os.path.join(dst_dir, f"dst_hsv_3ch_{fname}"), dst_hsv_merged_bgr)
+# dst_ycc_merged_bgr
+cv2.imwrite(os.path.join(dst_dir, f"dst_ycc_3ch_{fname}"), dst_ycc_merged_bgr)
+## [Save results]
 
 ## [Display results]
 cv2.imshow('Source image', src_r)
