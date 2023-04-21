@@ -76,22 +76,24 @@ def compareColorHistogram2d(image, histSize, fname):
         img = ax.imshow(hist)
 
     # image 상단부에는 subplot들이 있고 하단부에 colorbar를 그려줍니다.
-    fig.colorbar(img, ax=axes.ravel().tolist(), orientation='orizontal')
+    fig.colorbar(img, ax=axes.ravel().tolist(), orientation='horizontal')
     fig.suptitle('2D Color Histograms with {} histSize with {} image'.format(
                     histSize, fname), fontsize=32)
     plt.show()
 
 ap = argparse.ArgumentParser()
-# 이미지 경로를 받습니다.
+
+# 이미지 경로, 히스토그램의 간격 사이즈를 받습니다.
 ap.add_argument("-i", "--image", required=True, help="Image path")
-# 히스토그램의 간격 사이즈를 받습니다.
 ap.add_argument("-b", "--bins", required=True, help="Each hist size")
 args = vars(ap.parse_args())
-path = 'lenna.png' # args["image"]
-histSize = 32 # int(args['bins'])
+
+path = args['image']
+histSize = int(args['bins'])
+
 
 # 그래프 제목을 출력하기 위해 입력받은 사진의 이름을 저장합니다.
-fname = os.path.splitext(path)[0]
+fname = os.path.basename(path)
 # 이미지를 color로 불러옵니다.
 src = cv2.imread(path, cv2.IMREAD_COLOR)
 
