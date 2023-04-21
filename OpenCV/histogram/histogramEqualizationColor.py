@@ -30,13 +30,23 @@ y, Cr, Cb = cv2.split(yCrCb)
 # y값을 히스토그램 평활화를 합니다.
 equalizedY = cv2.equalizeHist(y)
 # equalizedY, Cr, Cb를 합쳐서 새로운 yCrCb 이미지를 만듭니다.
-yCrCb2 = cv2.merge([equalizedV, Cr, Cb])
+yCrCb2 = cv2.merge([equalizedY, Cr, Cb])
 # 마지막으로 yCrCb2를 다시 BGR 형태로 변경합니다.
 yCrCbDst = cv2.cvtColor(yCrCb2, cv2.COLOR_YCrCb2BGR)
 
+# Resize Factor
+fx_f = 0.3
+fy_f = 0.3
+
+# Image Resize
+src_r = cv2.resize(src, dsize=(0, 0), fx=fx_f, fy=fy_f, interpolation=cv2.INTER_AREA)
+hsvDst_r = cv2.resize(hsvDst, dsize=(0, 0), fx=fx_f, fy=fy_f, interpolation=cv2.INTER_AREA)
+yCrCbDst_r = cv2.resize(yCrCbDst, dsize=(0, 0), fx=fx_f, fy=fy_f, interpolation=cv2.INTER_AREA)
+
+
 # src, hsv, YCrCb 각각을 출력합니다.
-cv2.imshow('src', src)
-cv2.imshow('hsv dst', hsvDst)
-cv2.imshow('YCrCb dst', yCrCbDst)
+cv2.imshow('src', src_r)
+cv2.imshow('hsv dst', hsvDst_r)
+cv2.imshow('YCrCb dst', yCrCbDst_r)
 cv2.waitKey()
 cv2.destroyAllWindows()

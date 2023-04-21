@@ -15,7 +15,7 @@ path = args["image"]
 histSize = int(args['bins'])
 
 # 그래프 제목을 출력하기 위해 입력받은 사진의 이름을 저장합니다.
-fname = os.path.splitext(path)[0]
+fname = os.path.basename(path)
 # 이미지를 grayscale로 불러옵니다.
 src = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
 # 이미지의 히스토그램을 입력받은 histSize 간격으로 계산합니다.

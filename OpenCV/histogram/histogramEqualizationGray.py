@@ -8,7 +8,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required=True, help="Image path to the directory")
 args = vars(ap.parse_args())
 path = args['image']
-fname = os.path.splitext(path)[0]
+fname = os.path.basename(path)
 
 # 입력 받은 이미지를 불러옵니다.
 src = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
@@ -28,7 +28,7 @@ dstHist = cv2.calcHist(images = [dst],
 
 cv2.imshow('src', src)
 cv2.imshow('dst', dst)
-plt.title('Grayscale histogram of {} image'.format(fname), fontSize = 16)
+plt.title('Grayscale histogram of ({}) image'.format(fname))
 plt.plot(srcHist, color = 'b', label = 'src hist')
 plt.plot(dstHist, color = 'r', label = 'dst hist')
 plt.legend(loc='best')
