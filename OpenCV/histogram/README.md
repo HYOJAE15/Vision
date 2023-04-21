@@ -10,7 +10,7 @@ https://gaussian37.github.io/vision-opencv-histogram/
 + histogramEqualization: 컬러 및 그레이 스켕일로 이미지의 히스토그램 평탄화 실행
 
 ```
-python OpenCV/histogram/histogramEqualization.py --image "이미지 파일 경로"
+python OpenCV/histogram/equalization.py --image "이미지 파일 경로"
 ```
 
 + histogramGrayscale : 그레이스케일 이미지로 변경 뒤 히스토그램을 구합니다.
