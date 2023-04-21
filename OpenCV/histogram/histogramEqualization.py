@@ -7,13 +7,13 @@ from matplotlib import pyplot as plt
 
 
 parser = argparse.ArgumentParser(description='Code for Histogram Equalization tutorial.')
-parser.add_argument('-i', '--input', help='Path to input image.', default='lena.jpg')
+parser.add_argument('-i', '--image', help='Path to input image.', default='lena.jpg')
 args = parser.parse_args()
 
 ## [Load image]
-src = cv2.imread(cv2.samples.findFile(args.input))
+src = cv2.imread(cv2.samples.findFile(args.image))
 if src is None:
-    print('Could not open or find the image:', args.input)
+    print('Could not open or find the image:', args.image)
     exit(0)
 ## [Load image]
 
@@ -88,8 +88,8 @@ plt.xlim([0,256])
 plt.show()
 
 # Resize Factor
-fx_f = 0.2
-fy_f = 0.2
+fx_f = 0.5
+fy_f = 0.5
 
 # Image Resize
 src_r = cv2.resize(src, dsize=(0, 0), fx=fx_f, fy=fy_f, interpolation=cv2.INTER_AREA)

@@ -7,10 +7,10 @@ https://gaussian37.github.io/vision-opencv-histogram/
 
 간단하게 실행하려면 아래와 같습니다.
 
-+ histogramEqualization: 컬러 및 그레이 스켕일로 이미지의 히스토그램 평탄화 실행
++ histogramEqualization: 컬러 및 그레이 스케일로 이미지의 히스토그램 평탄화 실행
 
 ```
-python OpenCV/histogram/equalization.py --image "이미지 파일 경로"
+python OpenCV/histogram/histogramEqualization.py --image "이미지 파일 경로"
 ```
 
 + histogramGrayscale : 그레이스케일 이미지로 변경 뒤 히스토그램을 구합니다.
@@ -40,7 +40,7 @@ python OpenCV/histogram/histogramColor.py --image "이미지 파일 경로" --bi
 + histogramEqualizationGray : 그레이스케일 이미지의 히스토그램 평활화를 적용합니다.
 
 ```
-python histogramEqualizationGray.py --image="이미지 파일 경로" 
+python OpenCV/histogram/histogramEqualizationGray.py --image="이미지 파일 경로" 
 ```
 
 ![4](assets/src1.PNG) <br>
@@ -50,7 +50,7 @@ python histogramEqualizationGray.py --image="이미지 파일 경로"
 + histogramEqualizationColor : 컬러 이미지에 히스토그램 평활화를 적용합니다. (HSV, YCbCr의 밝기 부분만 적용하여 컬러값 유지) 
 
 ```
-python histogramEqualizationColor.py --image="이미지 파일 경로" 
+python OpenCV/histogram/histogramEqualizationColor.py --image="이미지 파일 경로" 
 ```
 
 ![7](assets/hsvDst.PNG) <br>
