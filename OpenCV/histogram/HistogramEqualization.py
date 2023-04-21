@@ -18,7 +18,6 @@ if src is None:
 ## [Load image]
 
 
-
 """
 Histogram Equalization Gray
 """
